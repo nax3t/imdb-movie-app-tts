@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 # Simple form
 gem 'simple_form'
+# Devise for authentication
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
