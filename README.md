@@ -1,24 +1,18 @@
-# README
+# IMDB Movie App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Terminal commands to run this app locally:
+(be sure postrgres service is running)
+```
+git clone git@github.com:nax3t/imdb-movie-app-tts.git
 
-Things you may want to cover:
+cd imdb-movie-app-tts
 
-* Ruby version
+bundle
 
-* System dependencies
+rake db:create && rake db:migrate
 
-* Configuration
+rails s
+```
 
-* Database creation
+Navigate to `localhost:3000`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
