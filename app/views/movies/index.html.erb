@@ -1,6 +1,7 @@
 <h1>My Favorite Movies</h1>
 <% @movies.each do |movie| %>
-	<%= link_to movie.title, [current_user, movie] %>
+	<%= link_to movie.title, [current_user, movie] %> | <%= link_to 'Delete', [current_user, movie], method: :delete, data: {confirm: 'Are you sure?'} %>
+
 	<hr>
 <% end %>
 <%= link_to 'Back', :back %>

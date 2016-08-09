@@ -5,6 +5,7 @@
 	<%= f.hidden_field :title, :value => @movie_info["Title"] %>
 	<%= f.hidden_field :year, :value => @movie_info["Year"] %>
 	<%= f.hidden_field :plot, :value => @movie_info["Plot"] %>
+	<%= f.hidden_field :imdb_id, :value => @movie_info["imdbID"] %>
 	<%= f.button :submit, 'Favorite' %>
 <% end %>
 <%= link_to 'Back', :back %>
