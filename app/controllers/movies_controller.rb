@@ -34,12 +34,17 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		@movie = current_user.movies.build(movie_params)
-		if current_user.save
-			redirect_to [current_user, @movie]
-		else
-			flash[:alert] = "Sorry, your movie couldn't be favorited, please try again."
+		if current_user.movies.map(&:imdb_id).include? movie_params[:imdb_id]
+			flash[:alert] = "Sorry, you've already favorited this movie, please try again."
 			redirect_to root_path
+		else
+			@movie = current_user.movies.build(movie_params)
+			if current_user.save
+				redirect_to [current_user, @movie]
+			else
+				flash[:alert] = "Sorry, your movie couldn't be favorited, please try again."
+				redirect_to root_path
+			end
 		end
 	end
 

@@ -1,8 +1,9 @@
+<h1>Results</h1>
 <% @movies.each do |movie| %>
 	<p>
-	<%= movie["Title"] %><br>
-	<%= movie["Year"] %><br>
-	<%= link_to 'Details', details_path(movie["imdbID"]) %>
+		<%= movie["Title"] %><br>
+		<%= movie["Year"] %><br>
+		<%= link_to 'Details', details_path(movie["imdbID"]) %>
 	</p>
 	<hr>
 <% end %>
