@@ -1,4 +1,10 @@
-<h1><%= @movie["Title"] %></h1>
-<p>Year: <%= @movie["Year"] %></p>
-<p><%= @movie["Plot"] %></p>
+<h1><%= @movie_info["Title"] %></h1>
+<p>Year: <%= @movie_info["Year"] %></p>
+<p><%= @movie_info["Plot"] %></p>
+<%= simple_form_for([current_user, @movie]) do |f| %>
+	<%= f.hidden_field :title, :value => @movie_info["Title"] %>
+	<%= f.hidden_field :year, :value => @movie_info["Year"] %>
+	<%= f.hidden_field :plot, :value => @movie_info["Plot"] %>
+	<%= f.button :submit, 'Favorite' %>
+<% end %>
 <%= link_to 'Back', :back %>

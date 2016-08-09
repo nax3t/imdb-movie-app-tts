@@ -4,11 +4,5 @@
 	<%= movie["Year"] %><br>
 	<%= link_to 'Details', details_path(movie["imdbID"]) %>
 	</p>
-	
-	<%= simple_form_for([current_user, @movie]) do |f| %>
-		<%= f.hidden_field :title, :value => movie["Title"] %>
-		<%= f.hidden_field :year, :value => movie["Year"] %>
-		<%= f.button :submit, 'Favorite' %>
-	<% end %>
 	<hr>
 <% end %>

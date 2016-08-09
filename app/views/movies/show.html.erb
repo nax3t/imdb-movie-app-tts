@@ -1,3 +1,4 @@
 <h1><%= @movie.title %></h1>
-<p>Year: <%= @movie.year %></p>
+<p><strong>Year</strong>: <%= @movie.year %></p>
+<p><strong>Plot</strong>: <%= @movie.plot %></p>
 <%= link_to 'Back', :back %> | <%= link_to 'Favorites', user_movies_path(current_user) %>

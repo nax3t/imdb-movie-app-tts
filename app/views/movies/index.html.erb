@@ -1,7 +1,6 @@
 <h1>My Favorite Movies</h1>
 <% @movies.each do |movie| %>
-	<%= link_to movie.title, [current_user, movie] %><br>
-	<%= movie.year %>
+	<%= link_to movie.title, [current_user, movie] %>
 	<hr>
 <% end %>
 <%= link_to 'Back', :back %>

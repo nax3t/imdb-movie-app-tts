@@ -6,7 +6,6 @@ class MoviesController < ApplicationController
 	end
 
 	def search
-		@movie = Movie.new
 		# create end point from search query and API url
 		q = params[:q]
 		url = "http://www.omdbapi.com/?s="
@@ -16,24 +15,31 @@ class MoviesController < ApplicationController
 		# parse response.body and set result equal to data
 		data = JSON.parse(response.body)
 		@movies = data["Search"]
+		if @movies
+			render :search
+		else
+			flash[:alert] = "Sorry, your search came back empty, please try again."
+			redirect_to root_path
+		end
 	end
 
 	def details
+		@movie = Movie.new
 		imdb_id = params[:imdb_id]
 		url = "http://www.omdbapi.com/?i="
 		end_point = url + imdb_id + '&plot=full'
 
 		response = RestClient.get(end_point)
-		@movie = JSON.parse(response.body)
+		@movie_info = JSON.parse(response.body)
 	end
 
 	def create
 		@movie = current_user.movies.build(movie_params)
-		if @movie.save
+		if current_user.save
 			redirect_to [current_user, @movie]
 		else
 			flash[:alert] = "Sorry, your movie couldn't be favorited, please try again."
-			redirect_to welcome_path
+			redirect_to root_path
 		end
 	end
 
@@ -51,6 +57,6 @@ class MoviesController < ApplicationController
 		end
 
 		def movie_params
-			params.require(:movie).permit(:title, :year)
+			params.require(:movie).permit(:title, :year, :plot)
 		end
 end
