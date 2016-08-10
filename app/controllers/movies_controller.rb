@@ -2,7 +2,13 @@ class MoviesController < ApplicationController
 	before_action :find_movie, only: [:show, :destroy]
 
 	def index
-		@movies = current_user.movies
+		user = User.find(params[:user_id])
+		if current_user == user
+			@movies = current_user.movies
+		else
+			flash[:alert] = "You do not have permission to access this page!"
+			redirect_to root_path
+		end
 	end
 
 	def search
@@ -34,16 +40,19 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		if current_user.movies.map(&:imdb_id).include? movie_params[:imdb_id]
-			flash[:alert] = "Sorry, you've already favorited this movie, please try again."
-			redirect_to root_path
+		@movies = Movie.all
+		if @movies.map(&:imdb_id).include?(movie_params[:imdb_id])
+			@movie = Movie.find_by(imdb_id: movie_params[:imdb_id])
+			@movie.users << current_user
+			flash[:notice] = "#{@movie.title} successfully favorited."
+			redirect_to @movie
 		else
 			@movie = current_user.movies.build(movie_params)
 			if current_user.save
 				flash[:notice] = "#{@movie.title} successfully favorited."
 				redirect_to @movie
 			else
-				flash[:alert] = "Sorry, your movie couldn't be favorited, please try again."
+				flash[:alert] = "Unable to favorite movie."
 				redirect_to root_path
 			end
 		end
@@ -54,7 +63,7 @@ class MoviesController < ApplicationController
 	end
 
 	def destroy
-		@movie.destroy
+		current_user.movies.delete(@movie)
 		flash[:alert] = "Movie successfully deleted!"
 		redirect_to user_movies_path(current_user)
 	end
