@@ -11,6 +11,14 @@
 		<div class="col-md-4">
 			<h1>Reviews:</h1>
 			<% @movie.reviews.each do |review| %>
+				<% if review.user == current_user %>
+				<%= link_to edit_review_path review do %>
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				<% end %>
+				<%= link_to review, method: :delete, data: { confirm: 'Are you sure?' } do %>
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				<% end %>	
+				<% end %>
 				<strong><%= review.user.email %></strong>: <%= review.body %>
 				<hr>
 			<% end %>
