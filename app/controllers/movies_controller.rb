@@ -40,7 +40,8 @@ class MoviesController < ApplicationController
 		else
 			@movie = current_user.movies.build(movie_params)
 			if current_user.save
-				redirect_to [current_user, @movie]
+				flash[:notice] = "#{@movie.title} successfully favorited."
+				redirect_to @movie
 			else
 				flash[:alert] = "Sorry, your movie couldn't be favorited, please try again."
 				redirect_to root_path

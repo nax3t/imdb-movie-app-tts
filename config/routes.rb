@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   devise_for :users
   # nested user's movies routes
   resources :users, only: [:show] do
-    resources :movies, only: [:index, :show, :create, :destroy]
+    resources :movies, only: [:index, :show, :create, :destroy], shallow: true do
+      resources :reviews, only: [:create, :edit, :update, :destroy], shallow: true
+    end
   end
+
+
   # search movies route
   get 'search' => 'movies#search' # search_path => /search
   # movie details route
