@@ -1,4 +1,18 @@
-<h1><%= @movie.title %></h1>
-<p><strong>Year</strong>: <%= @movie.year %></p>
-<p><strong>Plot</strong>: <%= @movie.plot %></p>
-<%= link_to 'Back', :back %> | <%= link_to 'Favorites', user_movies_path(current_user) %>
+<div class="row">
+		<div class="col-md-8">
+			<h1><%= @movie.title %></h1>
+			<p><strong>Year</strong>: <%= @movie.year %></p>
+			<p><strong>Plot</strong>: <%= @movie.plot %></p>
+			<% if !@movie.reviews.map(&:user_id).include?(current_user.id) %>
+			<%= render 'reviews/form' %>
+			<% end %>
+			<%= link_to 'Back', :back %> | <%= link_to 'Favorites', user_movies_path(current_user) %>
+		</div>
+		<div class="col-md-4">
+			<h1>Reviews:</h1>
+			<% @movie.reviews.each do |review| %>
+				<strong><%= review.user.email %></strong>: <%= review.body %>
+				<hr>
+			<% end %>
+		</div>
+</div>
