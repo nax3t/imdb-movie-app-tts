@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.4'
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record
@@ -30,6 +30,8 @@ gem 'simple_form'
 gem 'devise'
 # RestClient for API calls
 gem 'rest-client'
+# rails_12factor for production
+gem 'rails_12factor'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
