@@ -1,9 +1,16 @@
-<h1>Results</h1>
-<% @movies.each do |movie| %>
-	<p>
-		<%= movie["Title"] %><br>
-		<%= movie["Year"] %><br>
-		<%= link_to 'Details', details_path(movie["imdbID"]) %>
-	</p>
-	<hr>
-<% end %>
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+		<% @movies.each do |movie| %>
+		<div class="post-preview">
+			<h2 class="post-title">
+				<%= movie["Title"] %>
+			</h2>
+			<p class="post-subtitle">
+				Year: <%= movie["Year"] %>
+			</p>
+			<p class="post-meta"><%= link_to 'Details', details_path(movie["imdbID"]) %></p>
+		</div>
+		<hr>
+		<% end %>
+	</div>
+</div>

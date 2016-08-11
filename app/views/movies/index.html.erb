@@ -1,7 +1,19 @@
 <h1>My Favorite Movies</h1>
-<% @movies.each do |movie| %>
-	<%= link_to movie.title, movie %> | <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'} %>
+<div class="row">
+	<div class="col-md-8">
+		<% if @movies.length > 0 %>
+		<% @movies.each do |movie| %>
+			<%= link_to movie.title, movie %> | <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'} %>
 
-	<hr>
-<% end %>
+			<hr>
+		<% end %>
+		<% else %>
+			<p>You don't have any favorites yet!</p>
+			<p>Search for a movie now:</p>
+		<% end %>
+	</div>
+	<div class="col-md-4">
+		<%= render 'form' %>
+	</div>
+</div>
 <%= link_to 'Back', :back %>

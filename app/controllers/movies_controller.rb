@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 	before_action :find_movie, only: [:show, :destroy]
 
 	def index
+		@image_url = 'post-bg'
 		user = User.find(params[:user_id])
 		if current_user == user
 			@movies = current_user.movies
@@ -12,8 +13,10 @@ class MoviesController < ApplicationController
 	end
 
 	def search
-		# create end point from search query and API url
+		@image_url = 'about-bg'
 		q = params[:q]
+		@title = q
+		# create end point from search query and API url
 		url = "http://www.omdbapi.com/?s="
 		end_point = url + q
 		# make API call to end point, set result equal to response
