@@ -21,3 +21,11 @@
 .intro-header .site-heading {
     padding: 75px 0;
 }
+
+.delete {
+	color: #ff0000;
+}
+
+.delete:hover {
+	color: #930808;
+}

@@ -3,8 +3,7 @@
 		<h1>My Favorite Movies</h1>
 		<% if @movies.length > 0 %>
 		<% @movies.each do |movie| %>
-			<%= link_to movie.title, movie %> | <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'} %>
-
+			<%= link_to movie.title, movie %> | <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'}, class: 'delete' %>
 			<hr>
 		<% end %>
 		<% else %>
