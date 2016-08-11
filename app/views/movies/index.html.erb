@@ -1,6 +1,6 @@
-<h1>My Favorite Movies</h1>
 <div class="row">
 	<div class="col-md-8">
+		<h1>My Favorite Movies</h1>
 		<% if @movies.length > 0 %>
 		<% @movies.each do |movie| %>
 			<%= link_to movie.title, movie %> | <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'} %>
@@ -13,6 +13,7 @@
 		<% end %>
 	</div>
 	<div class="col-md-4">
+		<h1>Search:</h1>
 		<%= render 'form' %>
 	</div>
 </div>
